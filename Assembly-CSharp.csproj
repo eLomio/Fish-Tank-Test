@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{A513BC8D-6A7D-D6C5-EEBE-D27CF600D276}</ProjectGuid>
+    <ProjectGuid>{C783AF00-A885-2E93-D1E0-1931D4E64581}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -60,8 +60,10 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.34f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\FishData.cs" />
     <Compile Include="Assets\Scripts\SpawnClick.cs" />
     <Compile Include="Assets\Scripts\ItsAlive.cs" />
+    <Compile Include="Assets\Scripts\FishManager.cs" />
     <Compile Include="Assets\Scripts\ScreenEdgeCollider.cs" />
   </ItemGroup>
   <ItemGroup>

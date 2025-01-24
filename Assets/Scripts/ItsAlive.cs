@@ -1,12 +1,15 @@
 using UnityEngine;
+using System.Collections;
 
 public class ItsAlive : MonoBehaviour
 {
-    public float strength = 4f;
-    public float speed = 4f;
-
+    public float strength;
+    public float speed;
     public Vector2 direction;
-    private float nextTime = 1f;
+
+
+    private float nextTime = 0f;
+    private FishData fishData;
     private Rigidbody2D rb; 
     private SpriteRenderer sb;
 
@@ -28,13 +31,21 @@ public class ItsAlive : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sb = GetComponent<SpriteRenderer>();
 
-        //Start at a random location with no speed
-        //rb.position.Set(Random.Range(-sz.x,sz.x), Random.Range(-sz.y,sz.y));
+        //Start with no speed
+            //rb.position.Set(Random.Range(-sz.x,sz.x), Random.Range(-sz.y,sz.y));
         direction = rb.position;
         rb.linearVelocity = Vector2.zero;
         nextTime += Time.time;
 
-        //Check position every 15 seconds
+        // Generate fish data with random attributes and assign it
+        fishData = new FishData(4f, 4f, rb.position);
+
+        // Apply generated values to the fish
+        sb.color = fishData.fishColor;
+        strength = fishData.strength;
+        speed = fishData.speed;
+
+        //Validate position every 15 seconds
         InvokeRepeating("ValidatePos", 15f, 15f);
     }
 
@@ -57,6 +68,8 @@ public class ItsAlive : MonoBehaviour
         if(Time.time > nextTime){
             nextTime += Random.Range(speed * 0.75f, speed * 1.5f);
             rb.AddForce((direction - rb.position).normalized * strength * 100);
+
+            StartCoroutine(StretchEffect());  // Trigger the stretch animation
         }
     }
 
@@ -67,4 +80,54 @@ public class ItsAlive : MonoBehaviour
             rb.position = Vector2.zero;
         }
     }
+
+    IEnumerator StretchEffect()
+    {
+        float dd = speed / 40f;
+        float et = 0f;
+
+        Vector2 os = new Vector2(1f, 1f);
+        Vector2 st = new Vector2(os.x * 1.2f, os.y * 0.8f);  // Slight stretch
+        Vector2 sq = new Vector2(os.x * 0.8f, os.y * 1.2f);  // Slight stretch
+
+        transform.localScale = os; 
+        
+        while (et < dd){
+            transform.localScale = Vector2.Lerp(os, sq, et/dd);
+            et += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.localScale = sq;
+        dd *= 2;
+        et = 0f;
+
+        while (et < dd){
+            transform.localScale = Vector2.Lerp(sq, st, et/dd);
+            et += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.localScale = st;
+        dd *= 1;
+        et = 0f;
+
+        while (et < dd){
+            transform.localScale = Vector2.Lerp(st, os, et/dd);
+            et += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.localScale = os;   
+    }
+
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(1))  // (0 = left, 1 = right, 2 = middle)
+        {
+        //Debug.Log("Fish deleted!");
+        Destroy(gameObject);  // Destroy this fish GameObject
+        }
+    }
+
 }

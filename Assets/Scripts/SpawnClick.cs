@@ -17,6 +17,12 @@ public class SpawnClick : MonoBehaviour
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0f;  // Set Z position to 0 for 2D
-        Instantiate(phishPrefab, mousePosition, Quaternion.identity);
+        GameObject newFish = Instantiate(phishPrefab, mousePosition, Quaternion.identity);
+
+        SpriteRenderer fishRenderer = newFish.GetComponent<SpriteRenderer>();
+        if (fishRenderer != null)
+        {
+            fishRenderer.enabled = true;  // Make the fish visible by enabling the renderer
+        }
     }
 }
