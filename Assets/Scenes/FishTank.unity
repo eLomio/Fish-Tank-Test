@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &31912902 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4518380768105037448, guid: b8151d8304e17f64abbba0c22a97d40b, type: 3}
-  m_PrefabInstance: {fileID: 4058068961424943189}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &327268141
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,7 +429,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f136428a1774b8b498cf82e4f4476786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phishPrefab: {fileID: 31912902}
+  phishPrefab: {fileID: 4518380768105037448, guid: b8151d8304e17f64abbba0c22a97d40b, type: 3}
+  FoodPrefab: {fileID: 8093932403751783265, guid: c1ead7a07f589604582561ab4209f5ef, type: 3}
 --- !u!4 &1596227454
 Transform:
   m_ObjectHideFlags: 0
@@ -537,78 +533,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &4058068961424943189
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3709442184225167161, guid: b8151d8304e17f64abbba0c22a97d40b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709442184225167161, guid: b8151d8304e17f64abbba0c22a97d40b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709442184225167161, guid: b8151d8304e17f64abbba0c22a97d40b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709442184225167161, guid: b8151d8304e17f64abbba0c22a97d40b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709442184225167161, guid: b8151d8304e17f64abbba0c22a97d40b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709442184225167161, guid: b8151d8304e17f64abbba0c22a97d40b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709442184225167161, guid: b8151d8304e17f64abbba0c22a97d40b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709442184225167161, guid: b8151d8304e17f64abbba0c22a97d40b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709442184225167161, guid: b8151d8304e17f64abbba0c22a97d40b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709442184225167161, guid: b8151d8304e17f64abbba0c22a97d40b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4518380768105037448, guid: b8151d8304e17f64abbba0c22a97d40b, type: 3}
-      propertyPath: m_Name
-      value: Phish
-      objectReference: {fileID: 0}
-    - target: {fileID: 4518380768105037448, guid: b8151d8304e17f64abbba0c22a97d40b, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4837922794120796404, guid: b8151d8304e17f64abbba0c22a97d40b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b8151d8304e17f64abbba0c22a97d40b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 4058068961424943189}
   - {fileID: 1596227454}
   - {fileID: 327268143}
   - {fileID: 1610141781}

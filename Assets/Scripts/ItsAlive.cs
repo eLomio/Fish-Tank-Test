@@ -8,6 +8,7 @@ public class ItsAlive : MonoBehaviour
     public Vector2 direction;
 
 
+    private bool canEat = true;
     private float nextTime = 0f;
     private FishData fishData;
     private Rigidbody2D rb; 
@@ -46,7 +47,8 @@ public class ItsAlive : MonoBehaviour
         speed = fishData.speed;
 
         //Validate position every 15 seconds
-        InvokeRepeating("ValidatePos", 15f, 15f);
+        InvokeRepeating("ValidatePos", Random.Range(10f, 20f), 15f);
+        InvokeRepeating("NowICanEat", Random.Range(1f, 6f), 4f);
     }
 
     // Update is called once per frame
@@ -60,8 +62,16 @@ public class ItsAlive : MonoBehaviour
         }
 
         //Find new direction if current direction has been approximately reached
-        if((rb.position - direction).magnitude < 2f){
-            direction.Set(Random.Range(-sz.x,sz.x), Random.Range(-sz.y,sz.y));
+        GameObject nearestFood = FindNearestFood();
+        if (nearestFood != null && canEat){
+            // Set direction toward the Food
+            direction = nearestFood.transform.position;
+        }
+        else{
+            // Random movement if no Food exists
+            if ((rb.position - direction).magnitude < 2f){
+                direction.Set(Random.Range(-sz.x, sz.x), Random.Range(-sz.y, sz.y));
+            }
         }
 
         //Just keep swimming
@@ -79,6 +89,43 @@ public class ItsAlive : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             rb.position = Vector2.zero;
         }
+    }
+
+    void NowICanEat(){
+        canEat = true;
+        sb.color = fishData.fishColor;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Food") && canEat)
+        {
+            //hasEatenPellet = true; // Mark that the fish has eaten the pellet
+            Destroy(collision.gameObject); // Destroy the pellet
+
+            // Add behavior after eating (e.g., change fish color or behavior)
+            sb.color = Color.green; // Example: turn fish green to indicate eating
+            canEat = false;
+
+            Debug.Log($"{name} ate the pellet!");
+        }
+    }
+
+    GameObject FindNearestFood()
+    {
+        // Find all Foods in the scene
+        GameObject[] Foods = GameObject.FindGameObjectsWithTag("Food");
+        GameObject nearestFood = null;
+        float minDistance = float.MaxValue;
+
+        foreach (GameObject Food in Foods){
+            float distance = Vector2.Distance(transform.position, Food.transform.position);
+            if (distance < minDistance){
+                minDistance = distance;
+                nearestFood = Food;
+            }
+        }
+        return nearestFood;
     }
 
     IEnumerator StretchEffect()
